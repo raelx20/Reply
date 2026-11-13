@@ -152,11 +152,11 @@ export const siteConfig: SiteConfig = {
   },
 
   music: {
-    /* ── Your song at public/audio/edited.acc ── */
-    src: "audio/edited.acc",
+    /* ── Your song at public/audio/edited.aac ── */
+    src: "audio/edited.aac",
     title: "Our Song",
     artist: "Just for Anuska",
-    unavailableLabel: "Our song is on its way — add it at /public/audio/edited.acc",
+    unavailableLabel: "Our song is on its way — add it at /public/audio/edited.aac",
   },
 
   secret: {

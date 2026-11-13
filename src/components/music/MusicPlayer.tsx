@@ -6,7 +6,8 @@ import siteConfig from '../../config/site.config';
 
 /**
  * Minimal floating music player. One shared Audio instance — playback
- * survives every section. Attempts autoplay on mount; can be paused/tapped.
+ * survives every section. Loops continuously; attempts autoplay on mount;
+ * can be paused/tapped.
  */
 export function MusicPlayer() {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -82,6 +83,7 @@ export function MusicPlayer() {
         ref={audioRef}
         src={music.src}
         preload="metadata"
+        loop
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
         onEnded={() => setPlaying(false)}

@@ -6,7 +6,7 @@ import siteConfig from '../../config/site.config';
 
 /**
  * Minimal floating music player. One shared Audio instance — playback
- * survives every section. Never autoplays; only her explicit tap starts it.
+ * survives every section. Attempts autoplay on mount; can be paused/tapped.
  */
 export function MusicPlayer() {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -34,8 +34,13 @@ export function MusicPlayer() {
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio || unavailable) return;
+
+    // Sync playing state with actual audio state (handles autoplay)
+    setPlaying(!audio.paused);
+
     audio.play().catch(() => {
       /* autoplay blocked by browser — keep paused until user taps */
+      setPlaying(false);
       setUnavailable(false);
     });
   }, []);
@@ -77,7 +82,6 @@ export function MusicPlayer() {
         ref={audioRef}
         src={music.src}
         preload="metadata"
-        autoPlay
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
         onEnded={() => setPlaying(false)}

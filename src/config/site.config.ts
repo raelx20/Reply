@@ -90,51 +90,35 @@ export const siteConfig: SiteConfig = {
     subheading: "Some moments deserve to be kept forever.",
     photos: [
       /* ──────────────────────────────────────────────────────────
-       *  ADD / REPLACE / REARRANGE PHOTOGRAPHS HERE
-       *  1. Drop your file into  publicimages/photos/
-       *  2. Add an entry below (or edit an existing one)
-       *  3. Order in this array = order in the gallery
+       *  PHOTOGRAPHS
+       *  Order in this array = order in the gallery
        * ────────────────────────────────────────────────────────── */
       {
         id: "photo-1",
-        src: "images/photos/placeholder-01.svg",
+        src: "images/photos/photo1.jpg",
         caption: "The beginning of us",
-        alt: "Placeholder — replace with one of your photographs",
+        alt: "The beginning of us",
         aspect: "4 / 5",
       },
       {
         id: "photo-2",
-        src: "images/photos/placeholder-02.svg",
+        src: "images/photos/photo2.jpg",
         caption: "Your smile, my favourite view",
-        alt: "Placeholder — replace with one of your photographs",
+        alt: "Your smile, my favourite view",
         aspect: "3 / 2",
       },
       {
         id: "photo-3",
-        src: "images/photos/placeholder-03.svg",
+        src: "images/photos/photo3.jpg",
         caption: "That golden hour",
-        alt: "Placeholder — replace with one of your photographs",
+        alt: "That golden hour",
         aspect: "4 / 5",
       },
       {
         id: "photo-4",
-        src: "images/photos/placeholder-04.svg",
+        src: "images/photos/photo4.jpg",
         caption: "Just us, being us",
-        alt: "Placeholder — replace with one of your photographs",
-        aspect: "3 / 2",
-      },
-      {
-        id: "photo-5",
-        src: "images/photos/placeholder-05.svg",
-        caption: "My favourite little adventure",
-        alt: "Placeholder — replace with one of your photographs",
-        aspect: "4 / 5",
-      },
-      {
-        id: "photo-6",
-        src: "images/photos/placeholder-06.svg",
-        caption: "And countless more to come",
-        alt: "Placeholder — replace with one of your photographs",
+        alt: "Just us, being us",
         aspect: "3 / 2",
       },
     ],
@@ -168,11 +152,11 @@ export const siteConfig: SiteConfig = {
   },
 
   music: {
-    /* ── Drop your song at  public/audio/our-song.mp3  ── */
-    src: "audio/our-song.mp3",
+    /* ── Your song at public/audio/edited.acc ── */
+    src: "audio/edited.acc",
     title: "Our Song",
     artist: "Just for Anuska",
-    unavailableLabel: "Our song is on its way — add it at /public/audio/our-song.mp3",
+    unavailableLabel: "Our song is on its way — add it at /public/audio/edited.acc",
   },
 
   secret: {

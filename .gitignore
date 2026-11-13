@@ -27,4 +27,7 @@ yarn-error.log*
 *.tsbuildinfo
 
 # photos: keep your personal images local only, never committed
+photo*.jpeg
+photo*.jpg
+photo*.png
 public/images/photos/photo*

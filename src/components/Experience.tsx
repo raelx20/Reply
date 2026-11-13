@@ -53,8 +53,8 @@ export function Experience() {
         <FinalScreen />
       </main>
 
-      {entered && <MusicPlayer />}
       {openingAlive && <OpeningScreen leaving={entered} onEnter={handleEnter} />}
+      <MusicPlayer />
     </div>
   );
 }

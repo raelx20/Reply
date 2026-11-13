@@ -30,6 +30,16 @@ export function MusicPlayer() {
     }
   }, []);
 
+  /* attempt autoplay on mount — browsers may block it, fall back to manual play */
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio || unavailable) return;
+    audio.play().catch(() => {
+      /* autoplay blocked by browser — keep paused until user taps */
+      setUnavailable(false);
+    });
+  }, []);
+
   /* apply volume + persist */
   useEffect(() => {
     const audio = audioRef.current;
@@ -67,6 +77,7 @@ export function MusicPlayer() {
         ref={audioRef}
         src={music.src}
         preload="metadata"
+        autoPlay
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
         onEnded={() => setPlaying(false)}

@@ -30,6 +30,7 @@ export function EnvelopeSection() {
   const [closing, setClosing] = useState(false);
   const [instant, setInstant] = useState(false);
   const flipDoneRef = useRef(false);
+  const closeFlipDoneRef = useRef(false);
   const closingRef = useRef(false);
 
   const showChrome = state === 'CLOSED' || (state === 'FLAP_OPEN' && !running);
@@ -111,10 +112,45 @@ export function EnvelopeSection() {
     };
   }, [reading, reduced]);
 
+  /* ── CLOSE FLIP: animate the letter back from reader to envelope ── */
+  useLayoutEffect(() => {
+    if (!closing || closeFlipDoneRef.current) return;
+    const from = readerSheetRef.current;
+    const to = sheetRef.current;
+    if (!from || !to) return;
+    closeFlipDoneRef.current = true;
+
+    const first = from.getBoundingClientRect();
+    const last = to.getBoundingClientRect();
+
+    from.style.transition = 'none';
+    from.style.transformOrigin = 'top left';
+    from.style.transform = `translate(${first.left - last.left}px, ${first.top - last.top}px) scale(${first.width / last.width})`;
+
+    const raf = requestAnimationFrame(() => {
+      from.style.transition = 'transform 900ms cubic-bezier(0.22, 1, 0.36, 1)';
+      from.style.transform = 'translate(0px, 0px) scale(1)';
+    });
+
+    const clear = window.setTimeout(() => {
+      const node = readerSheetRef.current;
+      if (!node) return;
+      node.style.transition = '';
+      node.style.transform = '';
+      node.style.transformOrigin = '';
+    }, 980);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.clearTimeout(clear);
+    };
+  }, [closing, reduced]);
+
   /* ── close: the letter folds back into the envelope ── */
   const closeReader = useCallback(() => {
     if (closingRef.current) return;
     closingRef.current = true;
+    closeFlipDoneRef.current = false;
 
     setClosing(true);
     // envelope copy snaps to its tucked position while the overlay fades
@@ -130,6 +166,7 @@ export function EnvelopeSection() {
         setClosing(false);
         closingRef.current = false;
         flipDoneRef.current = false;
+        closeFlipDoneRef.current = false;
       },
       reduced ? 90 : 640,
     );

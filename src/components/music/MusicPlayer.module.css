@@ -1,0 +1,229 @@
+.player {
+  position: fixed;
+  left: max(1rem, env(safe-area-inset-left));
+  bottom: max(1rem, calc(env(safe-area-inset-bottom) + 0.4rem));
+  z-index: var(--z-player);
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  max-width: min(92vw, 24rem);
+  padding: 0.55rem 0.9rem 0.55rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(21, 16, 21, 0.82);
+  border: 1px solid rgba(255, 105, 166, 0.32);
+  box-shadow:
+    0 12px 34px rgba(0, 0, 0, 0.55),
+    0 0 30px rgba(255, 105, 166, 0.14);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  animation: player-in 0.9s var(--ease-cinematic) 0.6s both;
+}
+
+@keyframes player-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ── play / pause ───────────────────────────────────── */
+.playBtn {
+  flex: 0 0 auto;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--ivory);
+  background: linear-gradient(140deg, var(--rose), var(--burgundy));
+  box-shadow: 0 4px 16px rgba(255, 105, 166, 0.4);
+  transition:
+    transform 0.3s var(--ease-cinematic),
+    box-shadow 0.3s,
+    opacity 0.3s;
+}
+
+.playBtn:hover:not(:disabled),
+.playBtn:focus-visible {
+  transform: scale(1.08);
+  box-shadow: 0 6px 22px rgba(255, 105, 166, 0.55);
+}
+
+.playBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── meta ───────────────────────────────────────────── */
+.meta {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.25;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ivory);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.artist {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: var(--blush);
+  opacity: 0.85;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.artistFallback {
+  color: var(--champagne);
+  opacity: 0.9;
+  font-size: 0.64rem;
+}
+
+/* ── equaliser indicator ────────────────────────────── */
+.eq {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 18px;
+  opacity: 0.4;
+  transition: opacity 0.4s;
+}
+
+.eq span {
+  width: 3px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--rose);
+}
+
+.eqOn {
+  opacity: 1;
+}
+
+.eqOn span {
+  animation: eq-bounce 0.9s ease-in-out infinite;
+}
+
+.eqOn span:nth-child(1) {
+  animation-delay: 0s;
+}
+.eqOn span:nth-child(2) {
+  animation-delay: 0.22s;
+}
+.eqOn span:nth-child(3) {
+  animation-delay: 0.44s;
+}
+
+@keyframes eq-bounce {
+  0%,
+  100% {
+    height: 4px;
+  }
+  50% {
+    height: 16px;
+  }
+}
+
+/* ── volume ─────────────────────────────────────────── */
+.volume {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding-left: 0.2rem;
+  border-left: 1px solid rgba(248, 234, 240, 0.16);
+}
+
+.muteBtn {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: var(--blush);
+  transition:
+    color 0.3s,
+    background 0.3s;
+}
+
+.muteBtn:hover,
+.muteBtn:focus-visible {
+  color: var(--rose);
+  background: rgba(255, 105, 166, 0.14);
+}
+
+.range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 72px;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--rose) 0%, var(--rose) var(--vol, 70%), rgba(248, 234, 240, 0.22) var(--vol, 70%));
+  outline-offset: 4px;
+  cursor: pointer;
+}
+
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--ivory);
+  border: 2px solid var(--rose);
+  box-shadow: 0 0 8px rgba(255, 105, 166, 0.5);
+}
+
+.range::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ivory);
+  border: 2px solid var(--rose);
+  box-shadow: 0 0 8px rgba(255, 105, 166, 0.5);
+}
+
+.range::-moz-range-track {
+  height: 3px;
+  border-radius: 3px;
+  background: transparent;
+}
+
+/* ── responsive ─────────────────────────────────────── */
+@media (max-width: 560px) {
+  .player {
+    max-width: min(88vw, 17.5rem);
+    gap: 0.55rem;
+    padding-right: 0.7rem;
+  }
+
+  .volume {
+    display: none;
+  }
+
+  .title {
+    font-size: 0.88rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .eq {
+    display: none;
+  }
+}

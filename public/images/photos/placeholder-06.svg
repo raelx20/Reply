@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#241722"/>
+      <stop offset="1" stop-color="#120b11"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="42%" r="60%">
+      <stop offset="0" stop-color="#ff69a6" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#ff69a6" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="rose" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffa9cd"/>
+      <stop offset="0.55" stop-color="#ff7ab4"/>
+      <stop offset="1" stop-color="#e25590"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  <rect width="800" height="1000" fill="url(#glow)"/>
+
+  <!-- decorative frame -->
+  <rect x="36" y="36" width="728" height="928" fill="none" stroke="#781B3A" stroke-width="3" opacity="0.8"/>
+  <rect x="50" y="50" width="700" height="900" fill="none" stroke="#D8B98A" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- simple rose motif -->
+  <g transform="translate(400 400)">
+    <g fill="url(#rose)" opacity="0.95">
+      <path d="M0 60 C -70 30, -96 -30, -60 -70 C -34 -100, 34 -100, 60 -70 C 96 -30, 70 30, 0 60 Z" opacity="0.55"/>
+      <path d="M0 44 C -50 22, -70 -22, -44 -52 C -24 -74, 24 -74, 44 -52 C 70 -22, 50 22, 0 44 Z" opacity="0.75"/>
+      <path d="M0 26 C -32 12, -44 -16, -28 -36 C -14 -52, 14 -52, 28 -36 C 44 -16, 32 12, 0 26 Z"/>
+    </g>
+    <path d="M0 78 C -6 110, -4 140, 0 166 C 4 140, 6 110, 0 78 Z" fill="#4a5344"/>
+    <path d="M0 118 C -34 106, -60 112, -76 132 C -48 146, -18 142, 0 118 Z" fill="#3f4a3a"/>
+    <path d="M0 140 C 34 130, 58 138, 72 156 C 46 168, 18 162, 0 140 Z" fill="#46503f"/>
+  </g>
+
+  <text x="400" y="640" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="44" fill="#FFF5EB" letter-spacing="4">YOUR PHOTOGRAPH</text>
+  <text x="400" y="700" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="44" fill="#FFF5EB" letter-spacing="4">HERE</text>
+  <text x="400" y="770" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="24" fill="#F5B5CC" opacity="0.85">Replace this file with one of your photographs</text>
+  <text x="400" y="812" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="22" fill="#D8B98A" opacity="0.8">then update src/config/site.config.ts</text>
+</svg>

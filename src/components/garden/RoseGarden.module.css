@@ -1,0 +1,222 @@
+.section {
+  position: relative;
+  z-index: var(--z-content);
+  min-height: 92vh;
+  display: grid;
+  place-items: center;
+  padding: clamp(5rem, 12vh, 9rem) 1.25rem clamp(10rem, 20vh, 15rem);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.glow {
+  position: absolute;
+  width: min(70vw, 700px);
+  height: min(70vw, 700px);
+  top: 50%;
+  left: 50%;
+  translate: -50% -55%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 105, 166, 0.16) 0%, rgba(120, 27, 58, 0.1) 45%, transparent 70%);
+  filter: blur(40px);
+  z-index: -1;
+  animation: glow-breathe 12s ease-in-out infinite;
+}
+
+/* ── flanking rose clusters ────────────────────────── */
+.cluster {
+  position: absolute;
+  width: clamp(300px, 36vw, 560px);
+  aspect-ratio: 1;
+  filter: drop-shadow(0 20px 44px rgba(0, 0, 0, 0.55));
+  pointer-events: none;
+}
+
+.art {
+  width: 100%;
+  height: 100%;
+}
+
+.clusterLeft {
+  left: -10%;
+  bottom: 4%;
+  transform: scaleY(-1);
+}
+
+.clusterRight {
+  right: -10%;
+  bottom: 4%;
+  transform: scale(-1, -1);
+}
+
+/* ── accents ───────────────────────────────────────── */
+.roseAccent,
+.roseAccentA,
+.roseAccentB {
+  position: absolute;
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 26px rgba(255, 105, 166, 0.2));
+  animation: float-soft 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.roseAccentA {
+  width: clamp(90px, 10vw, 160px);
+  top: 16%;
+  left: 14%;
+}
+
+.roseAccentB {
+  width: clamp(76px, 8.5vw, 134px);
+  top: 22%;
+  right: 13%;
+  animation-delay: -3.5s;
+}
+
+.budAccent {
+  position: absolute;
+  top: 58%;
+  right: 22%;
+  width: clamp(40px, 5vw, 70px);
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.5));
+  animation: float-soft 9s ease-in-out infinite;
+  animation-delay: -6s;
+  pointer-events: none;
+}
+
+.budArt {
+  width: 100%;
+  height: auto;
+}
+
+/* ── petals ────────────────────────────────────────── */
+.petals {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.petalSlot {
+  position: absolute;
+  top: -6%;
+  display: block;
+  opacity: 0.5;
+  animation-name: garden-drift;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.petalSlot svg {
+  width: 100%;
+  height: auto;
+}
+
+@keyframes garden-drift {
+  0% {
+    transform: translate3d(0, -8vh, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(var(--sway, 40px), 105vh, 0) rotate(400deg);
+  }
+}
+
+/* ── content ───────────────────────────────────────── */
+.content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 40rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 1.2s var(--ease-cinematic),
+    transform 1.2s var(--ease-cinematic);
+}
+
+.contentVisible {
+  opacity: 1;
+  transform: none;
+}
+
+.eyebrow {
+  color: var(--champagne);
+  font-size: 0.95rem;
+  letter-spacing: 0.5em;
+  margin-bottom: 1rem;
+}
+
+.sub {
+  margin-top: 1rem;
+  font-family: var(--font-hand);
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  color: var(--blush);
+}
+
+.divider {
+  margin: 2rem auto 0;
+  width: min(240px, 60%);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(216, 185, 138, 0.7), transparent);
+  position: relative;
+}
+
+.divider::after {
+  content: '❦';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -52%;
+  background: var(--midnight);
+  padding: 0 0.6rem;
+  color: var(--champagne);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* ── garden floor ──────────────────────────────────── */
+.floor {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: clamp(130px, 20vw, 260px);
+  z-index: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 -10px 30px rgba(0, 0, 0, 0.5));
+}
+
+.floorArt {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── responsive ────────────────────────────────────── */
+@media (max-width: 768px) {
+  .cluster {
+    width: clamp(240px, 62vw, 380px);
+    opacity: 0.85;
+  }
+
+  .clusterLeft {
+    left: -24%;
+    bottom: 8%;
+  }
+
+  .clusterRight {
+    right: -24%;
+    bottom: 8%;
+  }
+
+  .roseAccentA {
+    top: 12%;
+    left: 6%;
+  }
+
+  .roseAccentB {
+    top: 14%;
+    right: 5%;
+  }
+
+  .budAccent {
+    display: none;
+  }
+}

@@ -1,0 +1,131 @@
+.layer {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-atmosphere);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* ── ambient pink glows ─────────────────────────────── */
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.6;
+  animation: glow-breathe 11s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.glowA {
+  width: min(60vw, 640px);
+  height: min(60vw, 640px);
+  top: -18%;
+  left: -12%;
+  background: radial-gradient(circle, rgba(255, 105, 166, 0.2) 0%, rgba(255, 105, 166, 0) 70%);
+}
+
+.glowB {
+  width: min(55vw, 560px);
+  height: min(55vw, 560px);
+  bottom: -15%;
+  right: -10%;
+  background: radial-gradient(circle, rgba(120, 27, 58, 0.4) 0%, rgba(120, 27, 58, 0) 70%);
+  animation-delay: -4s;
+  animation-duration: 14s;
+}
+
+.glowC {
+  width: min(45vw, 480px);
+  height: min(45vw, 480px);
+  top: 42%;
+  left: 55%;
+  background: radial-gradient(circle, rgba(255, 105, 166, 0.12) 0%, rgba(255, 105, 166, 0) 70%);
+  animation-delay: -8s;
+  animation-duration: 17s;
+}
+
+/* ── glow motes ─────────────────────────────────────── */
+.motes {
+  position: absolute;
+  inset: 0;
+}
+
+.mote {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 190, 216, 0.95) 0%, rgba(255, 105, 166, 0.4) 55%, rgba(255, 105, 166, 0) 75%);
+  animation: mote-drift linear infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes mote-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.2;
+  }
+  35% {
+    opacity: 0.75;
+  }
+  50% {
+    transform: translate3d(8px, -22px, 0);
+    opacity: 0.5;
+  }
+  75% {
+    opacity: 0.7;
+  }
+}
+
+/* ── falling petals ─────────────────────────────────── */
+.petals {
+  position: absolute;
+  inset: 0;
+}
+
+.petalSlot {
+  position: absolute;
+  top: 0;
+  display: block;
+  animation-name: petal-fall;
+  animation-timing-function: cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
+
+.petalArt {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.45));
+}
+
+@keyframes petal-fall {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  6% {
+    opacity: var(--petal-op, 0.5);
+  }
+  25% {
+    transform: translate3d(calc(var(--sway) * 0.5), 25vh, 0) rotate(calc(var(--spin) * 0.25));
+  }
+  50% {
+    transform: translate3d(var(--sway), 52vh, 0) rotate(calc(var(--spin) * 0.5));
+  }
+  75% {
+    transform: translate3d(calc(var(--sway) * 0.4), 80vh, 0) rotate(calc(var(--spin) * 0.75));
+  }
+  94% {
+    opacity: var(--petal-op, 0.5);
+  }
+  100% {
+    transform: translate3d(calc(var(--sway) * 0.9), 114vh, 0) rotate(var(--spin));
+    opacity: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .petalSlot {
+    width: 70% !important;
+  }
+}

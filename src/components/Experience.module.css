@@ -1,0 +1,23 @@
+.experience {
+  position: relative;
+  min-height: 100dvh;
+  overflow-x: clip;
+}
+
+.main {
+  position: relative;
+  z-index: var(--z-content);
+  outline: none;
+}
+
+.main:focus {
+  outline: none;
+}
+
+/* While any overlay (letter reader / lightbox) has the scroll locked,
+   lift the whole main above the fixed music player (z-40). Without this
+   the player floats over overlay controls, because .main's own stacking
+   context (z-5) traps the overlays' z-60. */
+:global(body[data-scroll-locked='true']) .main {
+  z-index: var(--z-overlay);
+}

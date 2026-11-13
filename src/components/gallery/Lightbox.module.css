@@ -142,6 +142,7 @@
   width: auto;
   height: auto;
   object-fit: contain;
+  image-orientation: from-image;
   border-radius: 2px;
 }
 

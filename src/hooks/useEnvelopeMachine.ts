@@ -123,7 +123,7 @@ export function useEnvelopeMachine({ reducedMotion }: Options) {
   const closeLetter = useCallback(() => {
     if (runningRef.current) return;
     clearTimer();
-    if (stateRef.current === 'LETTER_READABLE') setState('FLAP_OPEN');
+    if (stateRef.current === 'LETTER_READABLE') setState('CLOSED');
   }, [clearTimer, setState]);
 
   const sealIntact = state === 'CLOSED';

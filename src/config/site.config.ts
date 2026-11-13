@@ -9,7 +9,7 @@
 export interface Photo {
   /** Unique id */
   id: string;
-  /** Path inside /public — e.g. "/images/photos/us-01.jpg" */
+  /** Path inside /public — e.g. "images/photos/us-01.jpg" */
   src: string;
   /** Handwritten caption under the polaroid */
   caption: string;
@@ -91,48 +91,48 @@ export const siteConfig: SiteConfig = {
     photos: [
       /* ──────────────────────────────────────────────────────────
        *  ADD / REPLACE / REARRANGE PHOTOGRAPHS HERE
-       *  1. Drop your file into  public/images/photos/
+       *  1. Drop your file into  publicimages/photos/
        *  2. Add an entry below (or edit an existing one)
        *  3. Order in this array = order in the gallery
        * ────────────────────────────────────────────────────────── */
       {
         id: "photo-1",
-        src: "/images/photos/placeholder-01.svg",
+        src: "images/photos/placeholder-01.svg",
         caption: "The beginning of us",
         alt: "Placeholder — replace with one of your photographs",
         aspect: "4 / 5",
       },
       {
         id: "photo-2",
-        src: "/images/photos/placeholder-02.svg",
+        src: "images/photos/placeholder-02.svg",
         caption: "Your smile, my favourite view",
         alt: "Placeholder — replace with one of your photographs",
         aspect: "3 / 2",
       },
       {
         id: "photo-3",
-        src: "/images/photos/placeholder-03.svg",
+        src: "images/photos/placeholder-03.svg",
         caption: "That golden hour",
         alt: "Placeholder — replace with one of your photographs",
         aspect: "4 / 5",
       },
       {
         id: "photo-4",
-        src: "/images/photos/placeholder-04.svg",
+        src: "images/photos/placeholder-04.svg",
         caption: "Just us, being us",
         alt: "Placeholder — replace with one of your photographs",
         aspect: "3 / 2",
       },
       {
         id: "photo-5",
-        src: "/images/photos/placeholder-05.svg",
+        src: "images/photos/placeholder-05.svg",
         caption: "My favourite little adventure",
         alt: "Placeholder — replace with one of your photographs",
         aspect: "4 / 5",
       },
       {
         id: "photo-6",
-        src: "/images/photos/placeholder-06.svg",
+        src: "images/photos/placeholder-06.svg",
         caption: "And countless more to come",
         alt: "Placeholder — replace with one of your photographs",
         aspect: "3 / 2",
@@ -169,7 +169,7 @@ export const siteConfig: SiteConfig = {
 
   music: {
     /* ── Drop your song at  public/audio/our-song.mp3  ── */
-    src: "/audio/our-song.mp3",
+    src: "audio/our-song.mp3",
     title: "Our Song",
     artist: "Just for Anuska",
     unavailableLabel: "Our song is on its way — add it at /public/audio/our-song.mp3",
